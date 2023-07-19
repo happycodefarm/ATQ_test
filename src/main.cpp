@@ -36,7 +36,7 @@ void setup() {
   delay(RESET_DELAY);
 
  // Serial.println("triggerCalibration");
-    //  touch_sensor.setKeyDetectThreshold(11, 5);
+ // touch_sensor.setKeyDetectThreshold(11, 5);
 
   touch_sensor.triggerCalibration();
   delay(CALIBRATION_LOOP_DELAY);
@@ -63,27 +63,13 @@ void loop() {
   float signal10 = touch_sensor.getKeySignal(10);
   float signal11 = touch_sensor.getKeySignal(11);
 
-  minSignal = 9400.00; // min(minSignal, signal);
-  maxSignal = 14000.00; //max(maxSignal, signal);
-  // minSignal+=1;
-  // maxSignal-=1;
+  // minSignal = 9400.00; // min(minSignal, signal);
+  // maxSignal = 14000.00; //max(maxSignal, signal);
+
 
   float smoothedSignal10 = simpleKalmanFilter.updateEstimate(signal10);
   float smoothedSignal11 = simpleKalmanFilter.updateEstimate(signal11);
-  // Serial.print("getKeySignal(");
-  // Serial.print(11);
-  // Serial.print("): ");
-  // Serial.print(minSignal);
-  // Serial.print(" ");
-  //   Serial.print(maxSignal);
-
-  // // Serial.print(" ");
-  // //   Serial.print(signal);
-  // Serial.print(">10:");
-  // Serial.print(signal10);//|xy
-  // Serial.print(":");
-  // Serial.println(signal11);//|xy
-  // // Serial.println("|xy");
+ 
 
   Serial.print(">10:");
   Serial.println(signal10);//fmap(signal, minSignal, maxSignal, 0, 100.0));
